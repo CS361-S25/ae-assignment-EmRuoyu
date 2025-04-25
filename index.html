@@ -1,6 +1,74 @@
+<!-- Present the page with explanation and animation -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Artificial Ecology Simulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 15px;
+      font-size: 0.45rem; 
+    }
+    h1 {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    .welcome {
+      text-align: center;
+      font-size: 0.5rem;
+      margin-bottom: 10px;
+    }
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+    .explanation {
+      flex: 1;
+      max-width: 400px;
+    }
+    .explanation h2 {
+      font-size: 0.7rem;
+      margin-bottom: 6px;
+    }
+    .explanation ul {
+      margin-top: 0;
+    }
+    .simulation {
+      flex: 2;
+    }
+  </style>
+</head>
 <body>
-    <div id="target"> </div>
-  </body>
-  
-  <script src="https://code.jquery.com/jquery-1.11.2.min.js" integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA=" crossorigin="anonymous"></script>
+
+  <h1>Artificial Ecology Simulation</h1>
+  <p class="welcome">Welcome to this AE that simulates a predator-prey relationship.</p>
+
+  <div class="container">
+    <div class="explanation">
+      <h2>1. Seaweed (Prey species)</h2>
+      <ul>
+        <li>Grows 150 points each update, cannot move</li>
+        <li>Reproduces when energy reaches 550 points</li>
+      </ul>
+
+      <h2>2. Fish (Predator species)</h2>
+      <ul>
+        <li>Loses 70 points each update, can move</li>
+        <li>Gains energy all points of the seaweed it eats</li>
+        <li>Reproduces when energy reaches 1000 points</li>
+      </ul>
+    </div>
+
+    <div class="simulation" id="target">
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.11.2.min.js"
+    integrity="sha256-Ls0pXSlb7AYs7evhd+VLnWsZ/AqEHcXBeMZUycz/CcA="
+    crossorigin="anonymous"></script>
   <script type="text/javascript" src="AEAnimate.js"></script>
+
+</body>
+</html>
