@@ -1,1 +1,23 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/-GCLf3vW)
+# Artificial Ecologies
+
+This program implements a artificial ecology made up by two species with Empirical library.
+
+## Species and Interactions
+
+- **Seaweed/Prey (green)**:
+
+  - Grow each update, can not move
+  - reproduces when energy meets 500 points
+
+- **Fish/Predators (blue)**:
+- lose points each update, can move
+- gain points when eat seaweed
+- reproduces when energy meets 500 points
+
+## Simulation Dynamics
+
+Predators move randomly each turn. Predators consumes prey they encounter(in the same grid). Prey gain energy in each update, regrow to sustain the population. Together the two species form a dynamic ecosystem. The simulation balances predator-prey interactions to ensure a prolonged coexistence.
+
+# Acknowledge
+
+In process of writing this assignment, I referenced class materials and Labs developed by Professor Anya Vostinar for CS361 Artificial Life and Digital Evolution(Spring 2025), and recieved help from Anya and Course staff Kai.
