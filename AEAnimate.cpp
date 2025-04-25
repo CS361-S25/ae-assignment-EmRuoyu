@@ -11,12 +11,13 @@ emp::web::Document doc{"target"};
 
 class AEAnimator : public emp::web::Animate {
 
-    // grid width and height
-    const int num_h_boxes = 30;
-    const int num_w_boxes = 30;
-    const double RECT_SIDE = 8;
+    //grid width and height
+    const int num_h_boxes = 24;
+    const int num_w_boxes = 24;
+    const double RECT_SIDE = 10;
     const double width{num_w_boxes * RECT_SIDE};
     const double height{num_h_boxes * RECT_SIDE};
+    
     //create a canvas
     emp::web::Canvas canvas{width, height, "canvas"};
 
@@ -24,10 +25,8 @@ class AEAnimator : public emp::web::Animate {
         emp::Random random{2};
         OrgWorld world{random};
 
-
     public:
-    
-    /* Constructor: initializes canvas, control buttons, and cell grid with random values */
+    //Constructor: initializes canvas, control buttons, and cell grid with random values.
     AEAnimator() {
         doc << canvas;
         doc << GetToggleButton("Toggle");
@@ -37,6 +36,7 @@ class AEAnimator : public emp::web::Animate {
         world.SetPopStruct_Grid(num_w_boxes, num_h_boxes);
     }  
 
+    /// Randomly place organisms in the grid by chances
     void randomStart(){
         for (int i = 0; i < num_w_boxes * num_h_boxes; i++) {
             if (random.GetDouble() < 0.3) {
@@ -47,7 +47,7 @@ class AEAnimator : public emp::web::Animate {
         }
     }
 
-    /* Called on each frame: draws current state and applies AE update rule */
+    // Called on each frame: draws current state and applies AE update rule
     void DoFrame() override {
         canvas.Clear();
         world.Update();
@@ -55,6 +55,7 @@ class AEAnimator : public emp::web::Animate {
     }
 
     private:
+    // Draw entire grid
     void DrawGrid(){
         int PosOrg = 0;
         for (int x = 0; x < num_h_boxes; x++){

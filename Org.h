@@ -7,7 +7,7 @@
 /* Organism base class */
 class Organism {
     private:
-        double points; // energy points
+        double points; 
         int species; // species type marker
         bool has_moved = false; // check if organism has moved
         emp::Ptr<emp::Random> random; //random pointer

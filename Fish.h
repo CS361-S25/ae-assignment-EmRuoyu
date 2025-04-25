@@ -7,9 +7,9 @@
 
 /**
  * Fish (Predator species)
- * lose points each update, can move
- * gain points when eat seaweed
- * reproduces when energy meets 500 points
+ * lose 70 points each update(metabolism), can move
+ * gain all points of the seaweed it eats
+ * reproduces when energy meets 1000 points
  */
 
 class Fish : public Organism{
@@ -19,7 +19,7 @@ class Fish : public Organism{
         Fish(emp::Ptr<emp::Random> _random, double _points=0.0) : 
             Organism(_random, _points) { SetSpeciesType(2);}
 
-        //lose 100 points each update
+        //lose 70 points each update
         void Process() override {
             AddPoints(-70);
             SetHasMoved(false);

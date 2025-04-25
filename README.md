@@ -1,18 +1,18 @@
 # Artificial Ecologies
 
-This program implements a artificial ecology made up by two species with Empirical library.
+This project implements a artificial ecology made up by two species, using the Empirical library.
 
 ## Species and Interactions
 
 - **Seaweed/Prey (green)**:
 
-  - Grow each update, can not move
-  - reproduces when energy meets 500 points
+  - Grow 150 points each update, can not move
+  - reproduces when energy meets 550 points
 
 - **Fish/Predators (blue)**:
-- lose points each update, can move
-- gain points when eat seaweed
-- reproduces when energy meets 500 points
+- lose 70 points each update, can move
+- gain all points of the seaweed it eats
+- reproduces when energy meets 1000 points
 
 ## Simulation Dynamics
 

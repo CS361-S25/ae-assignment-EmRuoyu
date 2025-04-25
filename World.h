@@ -8,6 +8,7 @@
 #include "Fish.h"
 #include "Seaweed.h"
 
+/* World Class inherited from Empirical, handles organism interactions within it*/
 class OrgWorld : public emp::World<Organism> {
     emp::Random &random;
     emp::Ptr<emp::Random> random_ptr;
@@ -34,7 +35,7 @@ public:
         return org;
     }
 
-    // handles movement entry
+    // handles calling for movement
     int moveOrg(int index) {
         emp::Ptr<Organism> org = ExtractOrganism(index);
         if (org->GetSpeciesType() == 2) {
@@ -44,6 +45,7 @@ public:
         }
     }
 
+    // checks if the organism is dead and removes it
     void checkDeath(int i) {
         emp::Ptr<Organism> org = pop[i];
         if (org->GetSpeciesType() == 2 && org->GetPoints() <= 0) {
@@ -51,6 +53,7 @@ public:
         }
     }
 
+    // Try to reproduce the organism at the given index
     void AttemptReproduce(int index) {
         emp::Ptr<Organism> child = pop[index]->CheckReproduction();
         if (!child) return;
@@ -66,7 +69,7 @@ public:
     }
 
 private:
-    // Seaweed doesn't move, just returns to its original position
+    // Seaweed doesn't move, under same logic as fish
     int ReturnToOrigin(emp::Ptr<Organism> org, int index) {
         AddOrgAt(org, index);
         return index;
@@ -99,10 +102,12 @@ private:
         }
     }
 
+    // Fish consumes points from seaweed
     void ConsumePoints(emp::Ptr<Organism> predator, emp::Ptr<Organism> prey) {
         predator->AddPoints(prey->GetPoints());
     }
 
+    // Handles reproduction when the target position is occupied
     void HandleOccupiedReproduction(emp::Ptr<Organism> offspring, int targetIndex, emp::WorldPosition targetPos) {
         emp::Ptr<Organism> resident = pop[targetIndex];
         if (resident->GetSpeciesType() == 1) {
@@ -112,12 +117,14 @@ private:
         }
     }
 
+    // Resets the movement flags for all Fish
     void ResetMovementFlags() {
         for (size_t i = 0; i < GetSize(); i++) {
             if (IsOccupied(i)) pop[i]->SetHasMoved(false);
         }
     }
 
+    // Handles the behavior of organisms in the world
     void BehaviorPhases() {
         emp::vector<size_t> order = emp::GetPermutation(random, GetSize());
         for (int i : order) {
@@ -132,6 +139,7 @@ private:
         }
     }
 
+    // Handles calling reproduction 
     void ReproductionPhase() {
         emp::vector<size_t> spawn_order = emp::GetPermutation(random, GetSize());
         for (int i : spawn_order) {
@@ -139,6 +147,7 @@ private:
         }
     }
 
+    // Regrows seaweed in empty spaces by chance
     void RegrowSeaweed() {
         for (size_t i = 0; i < GetSize(); ++i) {
             if (!IsOccupied(i) && random.GetDouble() < 0.02) {

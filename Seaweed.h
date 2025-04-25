@@ -7,8 +7,8 @@
 
 /**
  * Seaweed (Prey species)
- * Grow each update, can not move
- * reproduces when energy meets 500 points
+ * Grow 150 points each update, can not move
+ * reproduces when energy meets 550 points
  */
 class Seaweed : public Organism{
 
